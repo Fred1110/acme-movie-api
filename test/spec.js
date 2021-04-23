@@ -1,9 +1,13 @@
 const {expect} = require('chai')
 
+const app = require('supertest')(require('../app'))
 
-describe('just a test', () => {
-  it('just a test', () => {
-    const string = 'test'
-    expect(string).to.equal('test')
+describe('Routes', () => {
+  describe('GET /', () => {
+    it('GET /', async()=> {
+      const response = await app.get('/');
+      expect(response.status).to.equal(200);
+      expect(response.text).to.include('The Acme Movie API')
+    })
   })
 })
