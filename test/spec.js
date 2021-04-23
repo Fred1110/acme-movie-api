@@ -1,8 +1,10 @@
 const {expect} = require('chai')
+const { syncAndSeed } = require('../db')
 
 const app = require('supertest')(require('../app'))
 
 describe('Routes', () => {
+  breforeEach(()=> syncAndSeed())
   describe('GET /', () => {
     it('GET /', async()=> {
       const response = await app.get('/');
